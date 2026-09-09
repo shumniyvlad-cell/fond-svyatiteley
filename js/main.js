@@ -204,17 +204,40 @@
       .fromTo(p.querySelector('.pillar__tags'), { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.7 }, 0.3);
   });
 
-  // Золотая нить
-  const path = document.getElementById('threadPath');
-  if (path) {
-    const len = path.getTotalLength();
-    path.style.strokeDasharray = String(len);
-    path.style.strokeDashoffset = String(len);
-    gsap.to(path, {
-      strokeDashoffset: 0, ease: 'none',
-      scrollTrigger: { trigger: '#pillars', start: 'top 78%', end: 'bottom 55%', scrub: 0.6 },
-    });
-  }
+  // Линии, которые прорисовываются при скролле: нить в миссии и линия капитала.
+  // У non-scaling-stroke штрихи считаются в экранных пикселях, поэтому длину меряем на экране.
+  const drawOnScroll = (path, trigger, start, end) => {
+    if (!path) return;
+    const svg = path.ownerSVGElement;
+    const state = { p: 0 };
+    let L = 0;
+    const apply = () => { path.style.strokeDashoffset = String(L * (1 - state.p)); };
+    const measureLen = () => {
+      const vb = svg.viewBox.baseVal, r = svg.getBoundingClientRect();
+      const sx = r.width / vb.width, sy = r.height / vb.height, total = path.getTotalLength();
+      let len = 0, prev = null;
+      for (let i = 0; i <= 240; i++) {
+        const q = path.getPointAtLength((total * i) / 240);
+        const pt = { x: q.x * sx, y: q.y * sy };
+        if (prev) len += Math.hypot(pt.x - prev.x, pt.y - prev.y);
+        prev = pt;
+      }
+      L = Math.ceil(len) + 2;
+      path.style.strokeDasharray = String(L);
+      apply();
+    };
+    measureLen();
+    gsap.to(state, { p: 1, ease: 'none', onUpdate: apply, scrollTrigger: { trigger, start, end, scrub: 0.6 } });
+    ScrollTrigger.addEventListener('refresh', measureLen);
+  };
+  drawOnScroll(document.getElementById('threadPath'), '#pillars', 'top 78%', 'bottom 55%');
+  drawOnScroll(document.getElementById('flowPath'), '#flow', 'top 72%', 'bottom 70%');
+
+  // Эндаумент: шаги
+  ScrollTrigger.batch('.flow__step', {
+    start: 'top 86%', once: true,
+    onEnter: (batch) => gsap.fromTo(batch, { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.9, stagger: 0.14, ease: 'power3.out' }),
+  });
 
   // Люди
   ScrollTrigger.batch('.role', {
