@@ -313,7 +313,9 @@ button { font: inherit; color: inherit; }
   inset: 0;
   z-index: 60;
   pointer-events: none;
+  transition: opacity 0.3s;
 }
+body.menu-open .orn-layer { opacity: 0; }
 .orn {
   position: absolute;
   top: 0; left: 0;
