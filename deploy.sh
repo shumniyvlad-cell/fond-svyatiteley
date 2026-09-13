@@ -17,6 +17,8 @@ rsync -az --delete --delete-excluded \
   --exclude '.gitignore' \
   --exclude '.nojekyll' \
   --exclude 'legal/' \
+  --exclude 'deck/' \
+  --exclude 'forum/' \
   --exclude 'node_modules/' \
   --exclude 'deploy.sh' \
   --exclude '.DS_Store' \
