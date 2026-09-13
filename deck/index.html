@@ -1,0 +1,700 @@
+<!doctype html>
+<html lang="ru" class="no-js">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Фонд Святителей земли русской — презентация</title>
+<meta name="description" content="Фонд Святителей земли русской: эндаумент-фонд. Три слайда о том, зачем мы, как работает целевой капитал и что мы создаём.">
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#121211">
+<link rel="icon" type="image/png" sizes="32x32" href="../assets/img/favicon-32.png">
+<link rel="preload" href="../assets/fonts/Forum-400-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/GolosText-var-cyrillic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/img/ornament-1800.webp" as="image" type="image/webp" fetchpriority="high">
+<link rel="stylesheet" href="../css/fonts.css">
+<script>document.documentElement.classList.replace('no-js','js')</script>
+<style>
+/* ===========================================
+   ТОКЕНЫ — те же, что на сайте
+   =========================================== */
+:root {
+  --ink-0: #0b0a09;
+  --ink-1: #121211;
+  --gold: #b7965e;
+  --gold-hi: #e2c98b;
+  --gold-lo: #6e5938;
+  --paper: #f8f6f0;
+  --umber: #35312b;
+  --stone: #7e776c;
+  --line-ink: rgba(183, 150, 94, 0.22);
+  --line-paper: rgba(53, 49, 43, 0.16);
+
+  --display: 'Forum', 'Times New Roman', Georgia, serif;
+  --text: 'Golos Text', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-inout: cubic-bezier(0.65, 0, 0.35, 1);
+
+  /* Типографика — только clamp(), чтобы слайд всегда влезал в экран */
+  --title-size: clamp(1.5rem, 5vw, 4rem);
+  --h2-size: clamp(1.25rem, 3.5vw, 2.5rem);
+  --h3-size: clamp(1rem, 2.5vw, 1.75rem);
+  --body-size: clamp(0.75rem, 1.5vw, 1.125rem);
+  --small-size: clamp(0.65rem, 1vw, 0.875rem);
+
+  --slide-padding: clamp(1rem, 4vw, 4rem);
+  --content-gap: clamp(0.5rem, 2vw, 2rem);
+  --element-gap: clamp(0.25rem, 1vw, 1rem);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+/* ===========================================
+   VIEWPORT FITTING — базовые правила
+   =========================================== */
+html, body { height: 100%; overflow-x: hidden; }
+html { scroll-snap-type: y mandatory; scroll-behavior: smooth; background: var(--ink-1); }
+body {
+  font-family: var(--text);
+  color: var(--paper);
+  background: var(--ink-1);
+  -webkit-font-smoothing: antialiased;
+  line-height: 1.5;
+}
+
+.slide {
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  scroll-snap-align: start;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.slide-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  max-height: 100%;
+  overflow: hidden;
+  padding: var(--slide-padding);
+}
+img { max-width: 100%; max-height: min(50vh, 400px); object-fit: contain; display: block; }
+
+@media (max-height: 700px) {
+  :root {
+    --slide-padding: clamp(0.75rem, 3vw, 2rem);
+    --content-gap: clamp(0.4rem, 1.5vw, 1rem);
+    --title-size: clamp(1.25rem, 4.5vw, 2.5rem);
+    --h2-size: clamp(1rem, 3vw, 1.75rem);
+  }
+}
+@media (max-height: 600px) {
+  :root {
+    --slide-padding: clamp(0.5rem, 2.5vw, 1.5rem);
+    --content-gap: clamp(0.3rem, 1vw, 0.75rem);
+    --title-size: clamp(1.1rem, 4vw, 2rem);
+    --body-size: clamp(0.7rem, 1.2vw, 0.95rem);
+  }
+  .decorative, .keyboard-hint { display: none; }
+}
+@media (max-height: 500px) {
+  :root {
+    --slide-padding: clamp(0.4rem, 2vw, 1rem);
+    --title-size: clamp(1rem, 3.5vw, 1.5rem);
+    --h2-size: clamp(0.9rem, 2.5vw, 1.25rem);
+    --body-size: clamp(0.65rem, 1vw, 0.85rem);
+  }
+}
+@media (max-width: 600px) {
+  :root { --title-size: clamp(1.25rem, 7vw, 2.5rem); }
+}
+@media (max-width: 700px), (hover: none) {
+  .keyboard-hint { display: none; }
+}
+
+/* ===========================================
+   ОБЩИЕ ЭЛЕМЕНТЫ
+   =========================================== */
+.display {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  line-height: 1.02;
+}
+.line { display: block; overflow: hidden; padding-bottom: 0.14em; margin-bottom: -0.14em; }
+.line > span { display: block; transform: translateY(112%); transition: transform 1.1s var(--ease-out); }
+.slide.visible .line > span { transform: translateY(0); }
+.slide.visible .line:nth-child(2) > span { transition-delay: 0.12s; }
+.slide.visible .line:nth-child(3) > span { transition-delay: 0.24s; }
+
+.reveal { opacity: 0; transform: translateY(18px); transition: opacity 0.9s var(--ease-out), transform 0.9s var(--ease-out); }
+.slide.visible .reveal { opacity: 1; transform: translateY(0); }
+
+/* Ромбик — разделитель тегов, как на сайте */
+.lozenge { display: inline-block; width: 4px; height: 4px; margin: 0 0.7em; background: var(--gold); transform: rotate(45deg); vertical-align: middle; }
+
+/* Номер слайда — в каждом слайде свой, чтобы попадал и в PDF */
+.slide-num {
+  position: absolute;
+  right: var(--slide-padding);
+  bottom: clamp(0.8rem, 2.4vh, 1.6rem);
+  font-family: var(--display);
+  font-size: var(--small-size);
+  letter-spacing: 0.22em;
+  color: var(--stone);
+}
+.slide-num b { font-weight: 400; color: var(--gold-hi); }
+.slide-foot {
+  position: absolute;
+  left: var(--slide-padding);
+  bottom: clamp(0.8rem, 2.4vh, 1.6rem);
+  font-family: var(--display);
+  font-size: var(--small-size);
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+
+/* Прогресс — тонкая золотая линия сверху */
+.progress { position: fixed; top: 0; left: 0; height: 2px; width: 0; background: var(--gold); z-index: 20; transition: width 0.6s var(--ease-out); }
+
+.keyboard-hint {
+  position: fixed;
+  left: 50%; bottom: clamp(0.8rem, 2.4vh, 1.6rem);
+  transform: translateX(-50%);
+  font-size: var(--small-size);
+  color: var(--stone);
+  letter-spacing: 0.08em;
+  opacity: 0;
+  transition: opacity 0.8s;
+  pointer-events: none;
+  z-index: 20;
+}
+.js .keyboard-hint.show { opacity: 0.7; }
+
+/* ===========================================
+   СЛАЙД I — ОБЛОЖКА
+   =========================================== */
+.s-cover {
+  background:
+    radial-gradient(60% 46% at 50% 38%, #201c16 0%, rgba(32, 28, 22, 0) 70%),
+    linear-gradient(180deg, var(--ink-1) 0%, var(--ink-0) 100%);
+  text-align: center;
+}
+/* золотая пыль — три слоя точек, медленно плывут */
+.s-cover::before {
+  content: '';
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: 0.55;
+  background-image:
+    radial-gradient(1.2px 1.2px at 12% 30%, rgba(226,201,139,.7) 50%, transparent 51%),
+    radial-gradient(1px 1px at 78% 18%, rgba(226,201,139,.6) 50%, transparent 51%),
+    radial-gradient(1.4px 1.4px at 88% 62%, rgba(226,201,139,.5) 50%, transparent 51%),
+    radial-gradient(1px 1px at 30% 78%, rgba(226,201,139,.6) 50%, transparent 51%),
+    radial-gradient(1.2px 1.2px at 60% 86%, rgba(226,201,139,.45) 50%, transparent 51%),
+    radial-gradient(1px 1px at 45% 12%, rgba(226,201,139,.5) 50%, transparent 51%),
+    radial-gradient(1.3px 1.3px at 6% 60%, rgba(226,201,139,.55) 50%, transparent 51%),
+    radial-gradient(1px 1px at 94% 40%, rgba(226,201,139,.5) 50%, transparent 51%);
+  background-size: 100% 100%;
+  animation: dust 40s linear infinite alternate;
+}
+@keyframes dust { to { transform: translate3d(1.5vw, -2vh, 0); } }
+
+.cover__orn {
+  position: relative;
+  /* ширина от высоты экрана, но не шире самого экрана — на телефоне орнамент не обрезается */
+  width: min(88vw, calc(clamp(120px, 34vh, 380px) * 1.818));
+  aspect-ratio: 1800 / 990;
+  margin: 0 auto clamp(14px, 3vh, 34px);
+}
+.cover__orn img {
+  width: 100%; height: 100%; max-height: none;
+  clip-path: inset(0 100% 0 0);
+  transition: clip-path 1.6s var(--ease-inout);
+}
+.slide.visible .cover__orn img { clip-path: inset(0 0% 0 0); }
+/* блик металла: маска — сам орнамент */
+.cover__orn::after {
+  content: '';
+  position: absolute; inset: 0;
+  -webkit-mask: url('../assets/img/ornament-1800.webp') center / contain no-repeat;
+  mask: url('../assets/img/ornament-1800.webp') center / contain no-repeat;
+  background: linear-gradient(112deg, transparent 38%, rgba(255, 244, 214, 0.95) 50%, transparent 62%);
+  background-size: 320% 100%;
+  background-position: 130% 0;
+  mix-blend-mode: screen;
+  opacity: 0;
+}
+.slide.visible .cover__orn::after { animation: shine 1.9s var(--ease-inout) 0.2s forwards; }
+@keyframes shine {
+  0%   { opacity: 1; background-position: 130% 0; }
+  85%  { opacity: 1; background-position: -30% 0; }
+  100% { opacity: 0; background-position: -30% 0; }
+}
+
+.cover__name {
+  font-size: clamp(1.3rem, 3.6vw, 3.3rem);
+  letter-spacing: 0.1em;
+  line-height: 1.12;
+  color: var(--paper);
+}
+.cover__rule {
+  width: clamp(60px, 8vw, 120px);
+  height: 1px;
+  margin: clamp(14px, 2.6vh, 28px) auto;
+  background: var(--gold);
+  transform: scaleX(0);
+  transition: transform 1.2s var(--ease-out) 0.9s;
+}
+.slide.visible .cover__rule { transform: scaleX(1); }
+.cover__tag {
+  font-family: var(--display);
+  text-transform: uppercase;
+  font-size: clamp(0.62rem, 1.1vw, 0.95rem);
+  letter-spacing: 0.5em;
+  color: var(--gold);
+  opacity: 0;
+  transition: opacity 1.2s var(--ease-out) 1.1s, letter-spacing 1.4s var(--ease-out) 1.1s;
+}
+.slide.visible .cover__tag { opacity: 1; letter-spacing: 0.26em; }
+.cover__lines { transition-delay: 0.5s; }
+.s-cover .line > span { transition-delay: 0.55s; }
+.s-cover .line:nth-child(2) > span { transition-delay: 0.68s; }
+
+/* ===========================================
+   СЛАЙД II — ЭНДАУМЕНТ (крем)
+   =========================================== */
+.s-endow { background: var(--paper); color: var(--umber); }
+.s-endow::before {
+  content: '';
+  position: absolute; inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+.s-endow .slide-content { position: relative; justify-content: center; gap: clamp(1.2rem, 5vh, 3.6rem); }
+
+.endow__head {
+  display: grid;
+  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
+  gap: clamp(1rem, 4vw, 4rem);
+  align-items: end;
+}
+.endow__title {
+  font-size: clamp(1.4rem, 4.2vw, 4rem);
+  color: var(--ink-1);
+}
+.endow__aside { display: grid; gap: clamp(0.5rem, 1.6vh, 1rem); align-self: end; }
+.endow__lead {
+  font-size: clamp(0.8rem, 1.25vw, 1.1rem);
+  line-height: 1.45;
+  color: var(--umber);
+  max-width: 44ch;
+}
+.endow__def {
+  font-size: clamp(0.68rem, 0.95vw, 0.86rem);
+  line-height: 1.5;
+  color: var(--stone);
+  max-width: 50ch;
+  padding-top: clamp(0.5rem, 1.4vh, 0.9rem);
+  border-top: 1px solid var(--line-paper);
+}
+.endow__def b { font-family: var(--display); font-weight: 400; text-transform: uppercase; letter-spacing: 0.12em; color: var(--gold-lo); display: block; margin-bottom: 0.35em; font-size: 0.92em; }
+
+/* Поток капитала — горизонтальная золотая линия с узлами */
+.flow {
+  --node: clamp(10px, 1.1vw, 14px);
+  --flow-gap: clamp(0.8rem, 2.4vw, 2.4rem);
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--flow-gap);
+  list-style: none;
+  padding-top: calc(var(--node) + clamp(0.9rem, 2.4vh, 1.6rem));
+}
+/* Линия от первого узла до последнего: правый край = начало четвёртой колонки */
+.flow__line {
+  position: absolute;
+  left: calc(var(--node) / 2);
+  right: calc(25% - 0.75 * var(--flow-gap) - var(--node) / 2);
+  top: calc(var(--node) / 2);
+  height: 1.5px;
+  background: var(--gold);
+  opacity: 0.85;
+  transform-origin: 0 50%;
+  transform: scaleX(0);
+  transition: transform 2.2s var(--ease-inout) 0.5s;
+  pointer-events: none;
+}
+.slide.visible .flow__line { transform: scaleX(1); }
+
+.flow__step { position: relative; counter-increment: step; min-width: 0; }
+.flow__step::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: calc(-1 * clamp(0.9rem, 2.4vh, 1.6rem) - var(--node));
+  width: var(--node); height: var(--node);
+  border: 1px solid var(--gold);
+  border-radius: 50%;
+  background: var(--paper);
+  transform: scale(0);
+  transition: transform 0.6s var(--ease-out);
+}
+.slide.visible .flow__step::before { transform: scale(1); }
+.slide.visible .flow__step:nth-child(2)::before { transition-delay: 0.9s; }
+.slide.visible .flow__step:nth-child(3)::before { transition-delay: 1.5s; }
+.slide.visible .flow__step:nth-child(4)::before { transition-delay: 2.1s; }
+.slide.visible .flow__step:nth-child(5)::before { transition-delay: 2.7s; }
+.flow__step--capital::before {
+  border-color: var(--gold-lo);
+  background: var(--gold);
+  box-shadow: 0 0 0 5px rgba(183, 150, 94, 0.18), 0 0 22px rgba(183, 150, 94, 0.45);
+}
+.flow__num {
+  display: block;
+  font-family: var(--display);
+  font-size: var(--small-size);
+  letter-spacing: 0.22em;
+  color: var(--gold-lo);
+  margin-bottom: clamp(0.2rem, 0.8vh, 0.5rem);
+}
+.flow__step h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-size: clamp(0.85rem, 1.55vw, 1.45rem);
+  line-height: 1.08;
+  color: var(--ink-1);
+  margin-bottom: clamp(0.3rem, 1vh, 0.6rem);
+}
+.flow__step--capital h3 { color: var(--gold-lo); }
+.flow__step p { font-size: clamp(0.68rem, 1vw, 0.92rem); line-height: 1.45; color: var(--stone); }
+/* шаги проявляются вслед за узлами */
+.flow__step .reveal { transition-duration: 0.9s; }
+.slide.visible .flow__step:nth-child(2) .reveal { transition-delay: 1.0s; }
+.slide.visible .flow__step:nth-child(3) .reveal { transition-delay: 1.6s; }
+.slide.visible .flow__step:nth-child(4) .reveal { transition-delay: 2.2s; }
+.slide.visible .flow__step:nth-child(5) .reveal { transition-delay: 2.8s; }
+
+@media (max-height: 600px) {
+  .endow__def { display: none; }
+  .flow__step p { display: none; }
+}
+@media (max-width: 700px) {
+  .endow__head { grid-template-columns: 1fr; align-items: start; }
+  .endow__def { display: none; }
+  .flow { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .flow__line { display: none; }
+  .flow__step::before { display: none; }
+  .flow { padding-top: 0; }
+}
+
+/* ===========================================
+   СЛАЙД III — ИНИЦИАТИВЫ И УЧАСТИЕ (чернила)
+   =========================================== */
+.s-init { background: linear-gradient(180deg, var(--ink-1) 0%, var(--ink-0) 100%); }
+.s-init .slide-content { position: relative; gap: clamp(1rem, 4vh, 2.6rem); }
+
+.init__head {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: var(--content-gap);
+  flex-wrap: wrap;
+}
+.init__title { font-size: clamp(1.3rem, 3.4vw, 3.1rem); color: var(--paper); }
+.init__pillars {
+  font-family: var(--display);
+  text-transform: uppercase;
+  letter-spacing: 0.16em;
+  font-size: clamp(0.6rem, 0.95vw, 0.85rem);
+  color: var(--gold-hi);
+  white-space: nowrap;
+  padding-bottom: 0.25em;
+}
+
+.init__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  border-top: 1px solid var(--line-ink);
+  border-left: 1px solid var(--line-ink);
+  list-style: none;
+}
+.init__cell {
+  padding: clamp(0.7rem, 2.2vh, 1.5rem) clamp(0.8rem, 1.6vw, 1.6rem);
+  border-right: 1px solid var(--line-ink);
+  border-bottom: 1px solid var(--line-ink);
+  display: grid;
+  gap: clamp(0.25rem, 0.9vh, 0.55rem);
+  align-content: start;
+  min-height: clamp(4.2rem, 15vh, 9rem);
+}
+.init__cell h3 {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  font-size: clamp(0.9rem, 1.7vw, 1.6rem);
+  line-height: 1.08;
+  color: var(--paper);
+}
+.init__tags { font-size: clamp(0.62rem, 0.9vw, 0.84rem); color: var(--stone); line-height: 1.5; }
+.init__tags .lozenge { margin: 0 0.55em; }
+.slide.visible .init__cell:nth-child(1) { transition-delay: 0.15s; }
+.slide.visible .init__cell:nth-child(2) { transition-delay: 0.27s; }
+.slide.visible .init__cell:nth-child(3) { transition-delay: 0.39s; }
+.slide.visible .init__cell:nth-child(4) { transition-delay: 0.51s; }
+.slide.visible .init__cell:nth-child(5) { transition-delay: 0.63s; }
+.slide.visible .init__cell:nth-child(6) { transition-delay: 0.75s; }
+
+.join {
+  display: grid;
+  grid-template-columns: auto repeat(3, minmax(0, 1fr));
+  gap: clamp(0.8rem, 2.6vw, 2.8rem);
+  align-items: start;
+  padding-top: clamp(0.8rem, 2.4vh, 1.6rem);
+  border-top: 1px solid var(--line-ink);
+  transition-delay: 0.95s;
+}
+.join__title {
+  font-size: clamp(0.95rem, 1.8vw, 1.7rem);
+  color: var(--gold-hi);
+  padding-right: clamp(0.6rem, 1.6vw, 1.6rem);
+}
+.join__item h4 {
+  font-family: var(--display);
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  font-size: clamp(0.72rem, 1.1vw, 1rem);
+  color: var(--paper);
+  margin-bottom: 0.25em;
+}
+.join__item p { font-size: clamp(0.64rem, 0.92vw, 0.86rem); color: rgba(248, 246, 240, 0.66); line-height: 1.45; }
+
+@media (max-height: 700px) { .join__item p { display: none; } .init__tags { display: none; } }
+@media (max-width: 800px) {
+  .init__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .init__pillars { display: none; }
+  .join { grid-template-columns: 1fr 1fr; }
+  .join__title { grid-column: 1 / -1; }
+  .join__item p { display: none; }
+}
+
+/* ===========================================
+   ПЕЧАТЬ / PDF — каждый слайд на странице, всё раскрыто
+   =========================================== */
+.print, .print body { height: auto; overflow: visible; scroll-snap-type: none; }
+.print .slide { height: 1080px; break-after: page; page-break-after: always; }
+.print .slide:last-child { break-after: auto; page-break-after: auto; }
+.print .progress, .print .keyboard-hint { display: none; }
+.print .line > span, .print .reveal, .print .cover__orn img, .print .cover__rule, .print .cover__tag,
+.print .flow__line, .print .flow__step::before { transition: none !important; animation: none !important; }
+.print .s-cover::before { animation: none; }
+
+/* ===========================================
+   БЕЗ АНИМАЦИЙ
+   =========================================== */
+@media (prefers-reduced-motion: reduce) {
+  html:not(.motion) *, html:not(.motion) *::before, html:not(.motion) *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.2s !important;
+    transition-delay: 0s !important;
+  }
+  html:not(.motion) { scroll-behavior: auto; }
+}
+/* Без JS показываем всё сразу */
+.no-js .line > span { transform: none; }
+.no-js .reveal { opacity: 1; transform: none; }
+.no-js .cover__orn img { clip-path: none; }
+.no-js .cover__rule { transform: none; }
+.no-js .cover__tag { opacity: 1; letter-spacing: 0.26em; }
+.no-js .flow__line { transform: none; }
+.no-js .flow__step::before { transform: none; }
+</style>
+</head>
+<body>
+
+<div class="progress" id="progress" aria-hidden="true"></div>
+
+<!-- ===================== I. ОБЛОЖКА ===================== -->
+<section class="slide s-cover" id="s1" aria-label="Обложка">
+  <div class="slide-content">
+    <div class="cover__orn decorative">
+      <img src="../assets/img/ornament-1800.webp"
+           srcset="../assets/img/ornament-1000.webp 1000w, ../assets/img/ornament-1800.webp 1800w"
+           sizes="700px" width="1800" height="990" alt="" decoding="async" fetchpriority="high">
+    </div>
+    <h1 class="display cover__name">
+      <span class="line"><span>Фонд Святителей</span></span>
+      <span class="line"><span>земли русской</span></span>
+    </h1>
+    <div class="cover__rule" aria-hidden="true"></div>
+    <p class="cover__tag">Наследие. Единство. Будущее.</p>
+  </div>
+  <p class="slide-foot">Сохраняем наследие. Создаём будущее.</p>
+  <p class="slide-num"><b>I</b> / III</p>
+</section>
+
+<!-- ===================== II. ЭНДАУМЕНТ ===================== -->
+<section class="slide s-endow" id="s2" aria-label="Эндаумент">
+  <div class="slide-content">
+    <div class="endow__head">
+      <h2 class="display endow__title">
+        <span class="line"><span>Мы не тратим</span></span>
+        <span class="line"><span>деньги меценатов.</span></span>
+        <span class="line"><span>Мы их преумножаем.</span></span>
+      </h2>
+      <div class="endow__aside">
+        <p class="endow__lead reveal">Фонд работает по принципу эндаумента — целевого капитала. Пожертвования не расходуются, а&nbsp;инвестируются. Инициативы финансирует доход от управления, а&nbsp;сам капитал сохраняется и&nbsp;продолжает работать.</p>
+        <p class="endow__def reveal"><b>Что такое эндаумент</b>Имущество некоммерческой организации, сформированное из пожертвований и&nbsp;переданное в&nbsp;доверительное управление ради дохода. Так устроены Нобелевский фонд и&nbsp;эндаументы крупнейших университетов мира. В&nbsp;России порядок определяет Федеральный закон №&nbsp;275‑ФЗ.</p>
+      </div>
+    </div>
+
+    <ol class="flow">
+      <li class="flow__line" aria-hidden="true"></li>
+      <li class="flow__step">
+        <span class="flow__num reveal" aria-hidden="true">I</span>
+        <h3 class="reveal">Взнос мецената</h3>
+        <p class="reveal">Пожертвования формируют целевой капитал фонда. Каждый взнос работает не один раз, а&nbsp;каждый год.</p>
+      </li>
+      <li class="flow__step flow__step--capital">
+        <span class="flow__num reveal" aria-hidden="true">II</span>
+        <h3 class="reveal">Целевой капитал</h3>
+        <p class="reveal">Тело капитала сохраняется. По закону формируется не менее чем на десять лет — это институт, а&nbsp;не разовая акция.</p>
+      </li>
+      <li class="flow__step">
+        <span class="flow__num reveal" aria-hidden="true">III</span>
+        <h3 class="reveal">Доверительное управление</h3>
+        <p class="reveal">Капитал инвестирует профессиональная управляющая компания. Задача — стабильный доход при сохранении капитала.</p>
+      </li>
+      <li class="flow__step">
+        <span class="flow__num reveal" aria-hidden="true">IV</span>
+        <h3 class="reveal">Доход идёт в инициативы</h3>
+        <p class="reveal">На проекты направляется доход от управления. Отчёт о&nbsp;капитале публикуется ежегодно.</p>
+      </li>
+    </ol>
+  </div>
+  <p class="slide-foot" style="color: var(--stone)">Эндаумент-фонд</p>
+  <p class="slide-num"><b>II</b> / III</p>
+</section>
+
+<!-- ===================== III. ИНИЦИАТИВЫ ===================== -->
+<section class="slide s-init" id="s3" aria-label="Стратегические инициативы">
+  <div class="slide-content">
+    <div class="init__head">
+      <h2 class="display init__title">
+        <span class="line"><span>Стратегические</span></span>
+        <span class="line"><span>инициативы</span></span>
+      </h2>
+      <p class="init__pillars reveal">Наследие<i class="lozenge"></i>Человек<i class="lozenge"></i>Территории<i class="lozenge"></i>Будущее</p>
+    </div>
+
+    <ul class="init__grid">
+      <li class="init__cell reveal"><h3>Шёлковый путь</h3><p class="init__tags">сотрудничество<i class="lozenge"></i>развитие<i class="lozenge"></i>новые связи</p></li>
+      <li class="init__cell reveal"><h3>Медицина будущего</h3><p class="init__tags">здоровье<i class="lozenge"></i>долголетие<i class="lozenge"></i>наука</p></li>
+      <li class="init__cell reveal"><h3>Культурный код России</h3><p class="init__tags">кино<i class="lozenge"></i>мода<i class="lozenge"></i>культура<i class="lozenge"></i>смыслы</p></li>
+      <li class="init__cell reveal"><h3>Цифровой кампус</h3><p class="init__tags">образование<i class="lozenge"></i>технологии<i class="lozenge"></i>новое поколение</p></li>
+      <li class="init__cell reveal"><h3>Развитие территорий</h3><p class="init__tags">земля<i class="lozenge"></i>агро<i class="lozenge"></i>природное наследие</p></li>
+      <li class="init__cell reveal"><h3>Память и личности</h3><p class="init__tags">истории людей<i class="lozenge"></i>знания<i class="lozenge"></i>преемственность</p></li>
+    </ul>
+
+    <div class="join reveal">
+      <h3 class="display join__title">Присоединяйтесь</h3>
+      <div class="join__item"><h4>Поддержать</h4><p>Стать меценатом: взнос пополняет целевой капитал и&nbsp;работает на проекты бессрочно.</p></div>
+      <div class="join__item"><h4>Партнёрство</h4><p>Реализовать проект вместе с&nbsp;фондом: ресурсы, экспертиза, совместная работа.</p></div>
+      <div class="join__item"><h4>Инициатива</h4><p>Предложить идею или новый проект — фонд открыт для инициатив.</p></div>
+    </div>
+  </div>
+  <p class="slide-foot">Наследие. Единство. Будущее.</p>
+  <p class="slide-num"><b>III</b> / III</p>
+</section>
+
+<p class="keyboard-hint" id="hint" aria-hidden="true">Стрелки или пробел — следующий слайд</p>
+
+<script>
+/* ===========================================
+   КОНТРОЛЛЕР ПРЕЗЕНТАЦИИ
+   Без зависимостей: IntersectionObserver + клавиатура + свайп.
+   =========================================== */
+(() => {
+  'use strict';
+  const html = document.documentElement;
+  const params = new URLSearchParams(location.search);
+
+  // Режим печати / PDF: всё раскрыто, без анимаций
+  if (params.has('print')) html.classList.add('print');
+
+  // Как на сайте: ?motion=1 включает анимации даже при «Уменьшить движение», браузер запоминает
+  try {
+    const q = params.get('motion');
+    if (q === '1') localStorage.setItem('fond-motion', '1');
+    if (q === '0') localStorage.removeItem('fond-motion');
+    if (localStorage.getItem('fond-motion') === '1') html.classList.add('motion');
+  } catch (e) { if (params.get('motion') === '1') html.classList.add('motion'); }
+
+  const slides = Array.from(document.querySelectorAll('.slide'));
+  const progress = document.getElementById('progress');
+  const hint = document.getElementById('hint');
+  let current = 0;
+
+  const setProgress = (i) => { progress.style.width = ((i + 1) / slides.length * 100) + '%'; };
+
+  if (html.classList.contains('print')) {
+    slides.forEach((s) => s.classList.add('visible'));
+    return;
+  }
+
+  // Появление слайда — когда он занимает больше половины экрана
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((en) => {
+      if (en.isIntersecting) {
+        en.target.classList.add('visible');
+        current = slides.indexOf(en.target);
+        setProgress(current);
+        history.replaceState(null, '', '#' + en.target.id);
+      }
+    });
+  }, { threshold: 0.55 });
+  slides.forEach((s) => io.observe(s));
+
+  const go = (i) => {
+    const n = Math.max(0, Math.min(slides.length - 1, i));
+    slides[n].scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches && !html.classList.contains('motion') ? 'auto' : 'smooth' });
+  };
+
+  document.addEventListener('keydown', (e) => {
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (['ArrowRight', 'ArrowDown', 'PageDown', ' ', 'Enter'].includes(e.key)) { e.preventDefault(); go(current + 1); }
+    else if (['ArrowLeft', 'ArrowUp', 'PageUp', 'Backspace'].includes(e.key)) { e.preventDefault(); go(current - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); go(0); }
+    else if (e.key === 'End') { e.preventDefault(); go(slides.length - 1); }
+    hint.classList.remove('show');
+  });
+
+  // Клик по правой части экрана — вперёд, по левой — назад (не мешает выделению текста)
+  document.addEventListener('click', (e) => {
+    if (e.target.closest('a, button, input, textarea')) return;
+    if (window.getSelection && String(window.getSelection()).length) return;
+    go(e.clientX > window.innerWidth * 0.5 ? current + 1 : current - 1);
+  });
+
+  // Открыли по якорю — стартуем с нужного слайда
+  const start = slides.findIndex((s) => '#' + s.id === location.hash);
+  if (start > 0) { html.style.scrollBehavior = 'auto'; slides[start].scrollIntoView(); requestAnimationFrame(() => (html.style.scrollBehavior = '')); }
+
+  setProgress(Math.max(0, start));
+  setTimeout(() => hint.classList.add('show'), 2600);
+  setTimeout(() => hint.classList.remove('show'), 8000);
+})();
+</script>
+</body>
+</html>
